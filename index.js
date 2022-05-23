@@ -48,8 +48,6 @@ app.post('/pessoas', pessoaController.addPessoa);
 
 app.delete('/pessoas/:id', pessoaController.deletePessoa);
 
-app.put('/pessoas', function (req, res) {
-  res.send('hello world')
-})
+app.put('/pessoas', pessoaController.attPessoa);
 
 app.listen(3000)

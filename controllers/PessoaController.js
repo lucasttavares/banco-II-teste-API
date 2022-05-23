@@ -1,5 +1,23 @@
 const Pessoa = require('../models/Pessoa')
 
+const attPessoa = async function(req, res){
+  
+  const pessoa = await Pessoa.findByPk(req.body.id);
+
+  if(pessoa === null){
+    res.status(400);
+    res.send('Usuário não encontrado');
+  }
+
+  else{
+    pessoa.nome = req.body.nome;
+    pessoa.save().then(p =>{
+      res.status(200)
+      res.send('OK')
+    })
+  }
+}
+
 const deletePessoa = async function(req, res){
 
   const pessoa = await Pessoa.findByPk(req.params.id);
@@ -47,4 +65,4 @@ const getPessoa = async function (req, res) {
 
   }
 
-module.exports = {getPessoa, addPessoa, deletePessoa};
+module.exports = {getPessoa, addPessoa, deletePessoa, attPessoa};
